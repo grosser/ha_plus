@@ -1,0 +1,9 @@
+url: http://uuuser:password@192.168.2.112:8700/haproxy?stats
+
+deploy:
+  production:
+    - 192.168.2.22
+    - 192.168.2.25
+  staging:
+    - testwanda.com
+
