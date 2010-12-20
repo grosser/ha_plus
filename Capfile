@@ -31,7 +31,7 @@ namespace :deploy do
 
   task :stop do
     pid = 'tmp/pids/thin.pid'
-    run "cd #{current_path} && (test -e #{pid} && cat #{pid} | xargs kill --no-run-if-empty) || echo 'not running'"
+    run "cd #{current_path} && (test -e #{pid} && cat #{pid} | xargs --no-run-if-empty kill) || echo 'not running'"
   end
 
   task :restart, :roles => :app do
