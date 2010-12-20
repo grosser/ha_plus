@@ -40,11 +40,11 @@ get '/' do
 end
 
 get '/set' do
-  result = `sudo #{File.expand_path('ha_switch')} #{params[:todo]} #{params[:service]} #{params[:service]} 2>&1`
-  if $?.success?
+  result = `sudo #{File.expand_path('../../current')}/ha_switch #{params[:todo]} #{params[:service]} #{params[:server]} 2>&1`
+  if $?.success? and not result.include?('ERROR')
     redirect '/'
   else
-    "ERROR #{result}"
+    "ERROR: #{result}"
   end
 end
 
