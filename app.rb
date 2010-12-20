@@ -13,7 +13,7 @@ error do
 end
 
 get '/' do
-  page = `curl --silent #{CFG['url']}`
+  page = `curl --silent '#{CFG['url']}'`
   doc = Nokogiri::HTML(page)
   service_name = 'NOT_FOUND'
 
@@ -41,8 +41,8 @@ end
 
 get '/set' do
   result = `sudo ha_switch #{params[:todo]} #{params[:service]} #{params[:service]} 2>&1`
-  if $?
-    redirect_to '/'
+  if $?.success?
+    redirect '/'
   else
     "ERROR #{result}"
   end

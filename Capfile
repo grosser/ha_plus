@@ -26,7 +26,7 @@ end
 
 namespace :deploy do
   task :start do
-    run "cd #{current_path} && bundle exec thin start --port 8701"
+    run "cd #{current_path} && bundle exec thin start --daemonize --port 8701"
   end
 
   task :stop do
