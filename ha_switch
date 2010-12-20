@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "$1 server $2/$3" | socat stdio /tmp/haproxy.sock
