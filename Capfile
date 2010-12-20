@@ -16,15 +16,29 @@ set :use_sudo, false
 # production or staging ?
 task(:production){}
 set :stage, (ARGV.first == 'production' ? :production : :staging)
-CFG = Yaml.load(File.read('config.yml'))
+CFG = YAML.load(File.read('config.yml'))
 
-ip = CFG['deploy'][stage.to_s]
-role :app, ip
-role :web, ip
+ips = CFG['deploy'][stage.to_s]
+ips.each do |ip|
+  role :app, ip
+  role :web, ip
+end 
 
 namespace :deploy do
+  task :start do
+    run "cd #{current_path} && bundle exec thin start --port 8701"
+  end
+
+  task :stop do
+    pid = 'tmp/pids/thin.pid'
+    run "cd #{current_path} && (test -e #{pid} && cat #{pid} | xargs kill --no-run-if-empty) || echo 'not running'"
+  end
+
   task :restart, :roles => :app do
-    run "touch #{current_release}/tmp/restart.txt" unless ENV['NO_RESTART']
+    unless ENV['NO_RESTART']
+      stop
+      start
+    end
   end
 
   task :copy_config_files do
