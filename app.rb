@@ -47,3 +47,8 @@ get '/set' do
     "ERROR #{result}"
   end
 end
+
+# users trying to use the normal ha should be redirected
+get '/haproxy' do
+  redirect '/'
+end
