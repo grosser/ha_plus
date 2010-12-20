@@ -1,13 +1,17 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    daemons (1.1.0)
+    eventmachine (0.12.10)
     nokogiri (1.4.3.1)
     rack (1.2.1)
     rake (0.8.7)
-    shotgun (0.8)
-      rack (>= 1.0)
     sinatra (1.0)
       rack (>= 1.0)
+    thin (1.2.7)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
 
 PLATFORMS
   ruby
@@ -15,5 +19,5 @@ PLATFORMS
 DEPENDENCIES
   nokogiri
   rake
-  shotgun
   sinatra
+  thin
