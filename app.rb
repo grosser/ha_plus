@@ -42,7 +42,7 @@ end
 get '/set' do
   result = `sudo #{File.expand_path('../../current')}/ha_switch #{params[:todo]} #{params[:service]} #{params[:server]} 2>&1`
   if $?.success? and not result.include?('ERROR')
-    redirect '/'
+    redirect "/##{params[:service]}"
   else
     "ERROR: #{result}"
   end
