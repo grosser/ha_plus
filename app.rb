@@ -40,7 +40,7 @@ get '/' do
 end
 
 get '/set' do
-  result = `sudo #{File.expand_path('../../current')}/ha_switch #{params[:todo]} #{params[:service]} #{params[:server]} 2>&1`
+  result = `sudo sudoless_haproxy_switch #{params[:todo]} #{params[:service]} #{params[:server]} 2>&1`
   if $?.success? and not result.include?('ERROR')
     redirect "/##{params[:service]}"
   else
