@@ -24,13 +24,14 @@ ips.each do |ip|
   role :web, ip
 end 
 
+
 namespace :deploy do
   task :start do
-    run "cd #{current_path} && manager.rb start"
+    run "cd #{current_path} && ./manager.rb start"
   end
 
   task :stop do
-    run "cd #{current_path} && manager.rb stop"
+    run "cd #{current_path} && ./manager.rb stop"
   end
 
   task :restart, :roles => :app do
