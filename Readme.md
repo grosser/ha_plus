@@ -1,3 +1,7 @@
+# Deprecated
+This is already included in HaProxy  1.4.9+, so do the upgrade !!
+
+# Goals
 Wraps HA interface to add:
 
  - on / off switch
