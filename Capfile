@@ -24,14 +24,14 @@ ips.each do |ip|
   role :web, ip
 end 
 
+
 namespace :deploy do
   task :start do
-    run "cd #{current_path} && bundle exec thin start --daemonize --port 8701"
+    run "cd #{current_path} && ./manager.rb start"
   end
 
   task :stop do
-    pid = 'tmp/pids/thin.pid'
-    run "cd #{current_path} && (test -e #{pid} && cat #{pid} | xargs --no-run-if-empty kill) || echo 'not running'"
+    run "cd #{current_path} && ./manager.rb stop"
   end
 
   task :restart, :roles => :app do
